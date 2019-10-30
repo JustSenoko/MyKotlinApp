@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mykotlinapp.R
 import com.example.mykotlinapp.ui.adapters.NotesRVAdapter
-import com.example.mykotlinapp.ui.viewModels.MainViewModel
+import com.example.mykotlinapp.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

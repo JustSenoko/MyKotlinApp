@@ -1,4 +1,4 @@
-package com.example.mykotlinapp.ui.viewStates
+package com.example.mykotlinapp.ui.viewstates
 
 import com.example.mykotlinapp.data.Note
 

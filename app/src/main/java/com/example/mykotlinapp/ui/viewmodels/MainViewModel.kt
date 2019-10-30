@@ -1,10 +1,10 @@
-package com.example.mykotlinapp.ui.viewModels
+package com.example.mykotlinapp.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mykotlinapp.data.NotesRepository
-import com.example.mykotlinapp.ui.viewStates.MainViewState
+import com.example.mykotlinapp.ui.viewstates.MainViewState
 
 class MainViewModel : ViewModel() {
     private val viewStateLiveData : MutableLiveData<MainViewState> = MutableLiveData()
