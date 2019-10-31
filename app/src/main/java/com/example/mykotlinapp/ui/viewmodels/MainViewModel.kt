@@ -7,15 +7,20 @@ import com.example.mykotlinapp.data.NotesRepository
 import com.example.mykotlinapp.ui.viewstates.MainViewState
 
 class MainViewModel : ViewModel() {
-    private val viewStateLiveData : MutableLiveData<MainViewState> = MutableLiveData()
+    private val viewStateLiveData: MutableLiveData<MainViewState> = MutableLiveData()
 
     init {
-        viewStateLiveData.value = MainViewState(NotesRepository.notes)
+        NotesRepository.getNotes().observeForever { notes ->
+            notes?.let {
+                viewStateLiveData.value = viewStateLiveData.value?.copy(notes = it)
+                        ?: MainViewState(it)
+            }
+        }
     }
 
-    fun setValue(newValue : MainViewState) {
+    fun setValue(newValue: MainViewState) {
         viewStateLiveData.value = newValue
     }
 
-    fun viewState() : LiveData<MainViewState> = viewStateLiveData
+    fun viewState(): LiveData<MainViewState> = viewStateLiveData
 }

@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         rv_notes.layoutManager = GridLayoutManager(this, 2)
-        adapter = NotesRVAdapter()
+        adapter = NotesRVAdapter {
+            NoteActivity.start(this, it)
+        }
         rv_notes.adapter = adapter
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
@@ -28,5 +30,8 @@ class MainActivity : AppCompatActivity() {
             it?.let { adapter.notes = it.notes }
         })
 
+        fab.setOnClickListener{
+            NoteActivity.start(this)
+        }
     }
 }
