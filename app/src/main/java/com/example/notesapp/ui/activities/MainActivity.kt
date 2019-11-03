@@ -1,13 +1,13 @@
-package com.example.mykotlinapp.ui.activities
+package com.example.notesapp.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.mykotlinapp.R
-import com.example.mykotlinapp.ui.adapters.NotesRVAdapter
-import com.example.mykotlinapp.ui.viewmodels.MainViewModel
+import com.example.notesapp.R
+import com.example.notesapp.ui.adapters.NotesRVAdapter
+import com.example.notesapp.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

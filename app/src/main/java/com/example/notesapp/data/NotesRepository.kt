@@ -1,4 +1,4 @@
-package com.example.mykotlinapp.data
+package com.example.notesapp.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

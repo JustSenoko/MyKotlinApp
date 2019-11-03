@@ -1,12 +1,12 @@
-package com.example.mykotlinapp.ui.adapters
+package com.example.notesapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mykotlinapp.R
-import com.example.mykotlinapp.data.Note
+import com.example.notesapp.R
+import com.example.notesapp.data.Note
 import kotlinx.android.synthetic.main.item_note.view.*
 
 class NotesRVAdapter(val onItemClick: ((Note) -> Unit)? = null) : RecyclerView.Adapter<NotesRVAdapter.ViewHolder>() {

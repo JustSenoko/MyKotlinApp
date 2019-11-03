@@ -1,4 +1,4 @@
-package com.example.mykotlinapp.ui.activities
+package com.example.notesapp.ui.activities
 
 import android.content.Context
 import android.content.Intent
@@ -8,9 +8,9 @@ import android.text.TextWatcher
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
-import com.example.mykotlinapp.R
-import com.example.mykotlinapp.data.Note
-import com.example.mykotlinapp.ui.viewmodels.NoteViewModel
+import com.example.notesapp.R
+import com.example.notesapp.data.Note
+import com.example.notesapp.ui.viewmodels.NoteViewModel
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_note.*
 import java.text.SimpleDateFormat
