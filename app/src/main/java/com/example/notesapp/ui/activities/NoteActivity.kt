@@ -71,10 +71,10 @@ class NoteActivity : BaseActivity<Note?, NoteViewState>() {
         et_title.removeTextChangedListener(textChangedListener)
         et_body.removeTextChangedListener(textChangedListener)
 
-        if (note != null) {
-            et_title.setText(note?.title ?: "")
-            et_body.setText(note?.text ?: "")
-            val color = when (note!!.color) {
+        note?.let {note ->
+            et_title.setText(note.title)
+            et_body.setText(note.text)
+            val color = when (note.color) {
                 Note.Colors.WHITE -> R.color.white
                 Note.Colors.YELLOW -> R.color.yellow
                 Note.Colors.GREEN -> R.color.green
