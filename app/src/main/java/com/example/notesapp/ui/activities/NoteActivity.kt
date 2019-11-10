@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.example.notesapp.R
+import com.example.notesapp.common.getColorInt
+import com.example.notesapp.common.formatDate
 import com.example.notesapp.data.Note
 import com.example.notesapp.ui.viewmodels.NoteViewModel
 import com.example.notesapp.ui.viewstates.NoteViewState
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_note.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class NoteActivity : BaseActivity<Note?, NoteViewState>() {
@@ -60,10 +60,10 @@ class NoteActivity : BaseActivity<Note?, NoteViewState>() {
     }
 
     override fun renderData(data: Note?) {
-        note = data
-        supportActionBar?.title =
-                if (note == null) getString(R.string.new_note)
-                else SimpleDateFormat(DATE_TIME_FORMAT, Locale.getDefault()).format(note!!.lastChanged)
+        this.note = data
+        supportActionBar?.title = note?.run {
+            this.lastChanged.formatDate(DATE_TIME_FORMAT)
+        } ?: getString(R.string.new_note)
         initView()
     }
 
@@ -71,18 +71,10 @@ class NoteActivity : BaseActivity<Note?, NoteViewState>() {
         et_title.removeTextChangedListener(textChangedListener)
         et_body.removeTextChangedListener(textChangedListener)
 
-        note?.let {note ->
+        note?.let { note ->
             et_title.setText(note.title)
             et_body.setText(note.text)
-            val color = when (note.color) {
-                Note.Colors.WHITE -> R.color.white
-                Note.Colors.YELLOW -> R.color.yellow
-                Note.Colors.GREEN -> R.color.green
-                Note.Colors.BLUE -> R.color.blue
-                Note.Colors.RED -> R.color.red
-                Note.Colors.VIOLET -> R.color.violet
-            }
-            toolbar.setBackgroundColor(resources.getColor(color))
+            toolbar.setBackgroundColor(note.color.getColorInt(this))
         }
         et_title.addTextChangedListener(textChangedListener)
         et_body.addTextChangedListener(textChangedListener)
