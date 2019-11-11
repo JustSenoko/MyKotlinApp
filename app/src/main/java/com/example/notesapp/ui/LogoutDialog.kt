@@ -18,9 +18,10 @@ class LogoutDialog : DialogFragment() {
         fun onLogout()
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?) = AlertDialog.Builder(context)
+    override fun onCreateDialog(savedInstanceState: Bundle?): AlertDialog = AlertDialog.Builder(context)
             .setTitle(getString(R.string.logout_dialog_title))
             .setMessage(getString(R.string.logout_dialog_message))
+            .setIcon(R.drawable.android_robot)
             .setPositiveButton(getString(R.string.yes)) { _, _ -> (activity as LogoutListener).onLogout()}
             .setNegativeButton(getString(R.string.no)) { _, _ -> dismiss() }
             .create()
