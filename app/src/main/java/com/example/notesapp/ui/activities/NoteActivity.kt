@@ -45,7 +45,6 @@ class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
         override fun afterTextChanged(p0: Editable?) {
             saveNote()
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +63,7 @@ class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
             toolbar.setBackgroundColor(color.getColorInt(this))
             saveNote()
         }
+        initView()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?) = MenuInflater(this).inflate(R.menu.note_menu, menu).let { true }
@@ -82,8 +82,8 @@ class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
         et_body.removeTextChangedListener(textChangedListener)
 
         note?.let { note ->
-            et_title.setText(note.title)
-            et_body.setText(note.text)
+            et_title.setTextKeepState(note.title)
+            et_body.setTextKeepState(note.text)
             color = note.color
             toolbar.setBackgroundColor(color.getColorInt(this))
             supportActionBar?.title = note.run {
@@ -92,6 +92,8 @@ class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
         } ?: let {
             supportActionBar?.title = getString(R.string.new_note)
         }
+        et_title.addTextChangedListener(textChangedListener)
+        et_body.addTextChangedListener(textChangedListener)
     }
 
     fun saveNote() {
