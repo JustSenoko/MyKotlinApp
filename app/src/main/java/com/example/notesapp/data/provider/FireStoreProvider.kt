@@ -11,16 +11,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
-class FireStoreProvider : RemoteDataProvider {
+class FireStoreProvider(private val firebaseAuth: FirebaseAuth, private val store: FirebaseFirestore) : RemoteDataProvider {
 
     companion object {
         private const val NOTES_COLLECTION = "notes"
         private const val USERS_COLLECTION = "users"
     }
 
-    private val store by lazy { FirebaseFirestore.getInstance() }
     private val currentUser
-        get() = FirebaseAuth.getInstance().currentUser
+        get() = firebaseAuth.currentUser
 
     override fun getCurrentUser() = MutableLiveData<User?>().apply {
         value = currentUser?.let { User(it.displayName ?: "", it.email ?: "") }
@@ -70,6 +69,22 @@ class FireStoreProvider : RemoteDataProvider {
                     }
                     .addOnFailureListener {
                         Timber.d { "Error saving note $note, message: ${it.message}" }
+                        value = NoteResult.Error(it)
+                    }
+        } catch (e: Throwable) {
+            value = NoteResult.Error(e)
+        }
+    }
+
+    override fun deleteNote(noteId: String): LiveData<NoteResult> = MutableLiveData<NoteResult>().apply {
+        try {
+            getUserNotesCollection().document(noteId).delete()
+                    .addOnSuccessListener {
+                        Timber.d { "Note $noteId deleted" }
+                        value = NoteResult.Success(null)
+                    }
+                    .addOnFailureListener {
+                        Timber.d { "Error deleting note $noteId, message: ${it.message}" }
                         value = NoteResult.Error(it)
                     }
         } catch (e: Throwable) {
