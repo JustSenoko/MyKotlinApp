@@ -1,15 +1,13 @@
 package com.example.notesapp.ui.viewmodels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.example.notesapp.data.Note
 import com.example.notesapp.data.NoteResult
 import com.example.notesapp.data.NotesRepository
 import com.example.notesapp.ui.viewstates.MainViewState
 
-class MainViewModel : BaseViewModel<List<Note>?, MainViewState>() {
+class MainViewModel(notesRepository: NotesRepository) : BaseViewModel<List<Note>?, MainViewState>() {
 
     private val noteObserver = Observer<NoteResult> {
         it?: return@Observer
@@ -21,7 +19,7 @@ class MainViewModel : BaseViewModel<List<Note>?, MainViewState>() {
         }
     }
 
-    private val repositoryNotes = NotesRepository.getNotes()
+    private val repositoryNotes = notesRepository.getNotes()
 
     init {
         viewStateLiveData.value = MainViewState()
