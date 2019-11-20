@@ -1,5 +1,6 @@
 package com.example.notesapp.ui.viewmodels
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.example.notesapp.data.Note
@@ -33,7 +34,8 @@ class MainViewModel(notesRepository: NotesRepository) : BaseViewModel<List<Note>
 
     fun viewState(): LiveData<MainViewState> = viewStateLiveData
 
-    override fun onCleared() {
+    @VisibleForTesting
+    public override fun onCleared() {
         repositoryNotes.removeObserver(noteObserver)
         super.onCleared()
     }

@@ -1,5 +1,6 @@
 package com.example.notesapp.ui.viewmodels
 
+import androidx.annotation.VisibleForTesting
 import com.example.notesapp.data.Note
 import com.example.notesapp.data.NoteResult
 import com.example.notesapp.data.NotesRepository
@@ -17,7 +18,8 @@ class NoteViewModel(private val notesRepository: NotesRepository) : BaseViewMode
         viewStateLiveData.value = NoteViewState(NoteViewState.Data(note = note))
     }
 
-    override fun onCleared() {
+    @VisibleForTesting
+    public override fun onCleared() {
         pendingNote?.let {
             notesRepository.saveNote(it)
         }

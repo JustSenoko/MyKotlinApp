@@ -35,10 +35,7 @@ class FireStoreProvider(private val firebaseAuth: FirebaseAuth, private val stor
                 exception?.let { value = NoteResult.Error(it) }
                         ?: let {
                             snapshot?.let {
-                                val notes = mutableListOf<Note>()
-                                for (doc: QueryDocumentSnapshot in snapshot) {
-                                    notes.add(doc.toObject(Note::class.java))
-                                }
+                                val notes = it.documents.map { it.toObject(Note::class.java) }
                                 value = NoteResult.Success(notes)
                             }
                         }
