@@ -13,14 +13,14 @@ import com.example.notesapp.common.formatDate
 import com.example.notesapp.common.getColorInt
 import com.example.notesapp.data.Note
 import com.example.notesapp.ui.viewmodels.NoteViewModel
-import com.example.notesapp.ui.viewstates.NoteViewState
+import com.example.notesapp.ui.viewstates.NoteData
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.activity_note.*
 import org.jetbrains.anko.alert
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
-class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
+class NoteActivity : BaseActivity<NoteData>() {
     companion object {
         private val EXTRA_NOTE = NoteActivity::class.java.name + "extra.note"
         private const val DATE_TIME_FORMAT = "dd.MM.yy HH:mm"
@@ -68,7 +68,7 @@ class NoteActivity : BaseActivity<NoteViewState.Data, NoteViewState>() {
 
     override fun onCreateOptionsMenu(menu: Menu?) = MenuInflater(this).inflate(R.menu.note_menu, menu).let { true }
 
-    override fun renderData(data: NoteViewState.Data) {
+    override fun renderData(data: NoteData) {
         if (data.isDeleted) {
             finish()
             return

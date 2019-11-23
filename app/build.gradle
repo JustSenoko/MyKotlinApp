@@ -54,6 +54,9 @@ dependencies {
 
     implementation 'com.github.ajalt:timberkt:1.5.1'
 
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+
     testImplementation 'junit:junit:4.12'
     testImplementation 'android.arch.core:core-testing:1.1.1'
     testImplementation 'io.mockk:mockk:1.9'
