@@ -19,7 +19,7 @@ open class BaseViewModel<T> : ViewModel(), CoroutineScope {
     open fun getViewStateChannel(): ReceiveChannel<T> = viewStateChannel.openSubscription()
     open fun getErrorChannel(): ReceiveChannel<Throwable> = errorChannel
 
-    protected fun setData(data: T) {
+    fun setData(data: T) {
         launch { viewStateChannel.send(data) }
     }
 
