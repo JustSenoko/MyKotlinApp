@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.lifecycle.MutableLiveData
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -13,17 +12,14 @@ import androidx.test.rule.ActivityTestRule
 import com.example.notesapp.R
 import com.example.notesapp.common.getColorInt
 import com.example.notesapp.data.Note
-import com.example.notesapp.ui.viewmodels.MainViewModel
 import com.example.notesapp.ui.viewmodels.NoteViewModel
-import com.example.notesapp.ui.viewstates.MainViewState
 import com.example.notesapp.ui.viewstates.NoteViewState
 import io.mockk.*
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.not
 import org.junit.After
+import org.junit.Assert.assertTrue
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.koin.android.viewmodel.ext.koin.viewModel
